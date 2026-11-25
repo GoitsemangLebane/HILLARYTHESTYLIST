@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pricing - Hillary The Stylist</title>
+  <meta name="description" content="Hair service pricing for all services">
+  
+  <link rel="shortcut icon" href="./favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./assets/css/style.css">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <script src="./assets/js/main.js" defer></script>
+  
+  <!-- Navigation will be injected here -->
+  <nav class="navbar" id="navbar"></nav>
+
+  <main>
+    <!-- Pricing Section -->
+    <section class="pricing" id="pricing">
+      <div class="container">
+        <div class="pricing-header">
+          <p class="label">Pricing</p>
+          <h2>Simple, honest prices</h2>
+          <p class="description">Prices in pula. Colour services start from the price shown and depend on hair length and thickness.</p>
+        </div>
+
+        <!-- Filter Buttons -->
+        <div class="pricing-filter">
+          <button class="filter-btn active" data-filter="all">All</button>
+          <button class="filter-btn" data-filter="cuts">Cuts</button>
+          <button class="filter-btn" data-filter="cut-colour">Cut & Colour</button>
+        </div>
+
+        <!-- Pricing Grid -->
+        <div class="pricing-grid" id="pricingGrid">
+          <!-- Pricing items will be loaded here -->
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer will be injected here -->
+  <footer id="footer"></footer>
+
+  <script>
+    let allPricing = [];
+
+    // Load pricing from data
+    async function loadPricing() {
+      try {
+        const response = await fetch('./data.json');
+        const data = await response.json();
+        allPricing = data.pricing || [];
+        
+        renderPricing('all');
+      } catch (error) {
+        console.error('Error loading pricing:', error);
+      }
+    }
+
+    function renderPricing(category) {
+      const grid = document.getElementById('pricingGrid');
+      let filtered = allPricing;
+      
+      if (category !== 'all') {
+        filtered = allPricing.filter(item => item.category === category);
+      }
+      
+      grid.innerHTML = filtered.map(item => `
+        <div class="pricing-card">
+          <img src="${item.image}" alt="${item.title}">
+          <div class="pricing-info">
+            <h3>${item.title}</h3>
+            <p class="pricing-meta">${item.meta}</p>
+            <p class="pricing-price">P${item.price}</p>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // Filter functionality
+    document.addEventListener('click', (e) => {
+      if (e.target.classList.contains('filter-btn')) {
+        document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+        e.target.classList.add('active');
+        renderPricing(e.target.dataset.filter);
+      }
+    });
+
+    // Load navbar and footer
+    async function loadSharedComponents() {
+      try {
+        const response = await fetch('./index.html');
+        const html = await response.text();
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(html, 'text/html');
+        
+        // Extract and inject navbar
+        const navbarHtml = doc.querySelector('nav')?.outerHTML || '';
+        document.getElementById('navbar').outerHTML = navbarHtml;
+        
+        // Extract and inject footer
+        const footerHtml = doc.querySelector('footer')?.outerHTML || '';
+        document.getElementById('footer').outerHTML = footerHtml;
+      } catch (error) {
+        console.error('Error loading shared components:', error);
+      }
+    }
+
+    loadSharedComponents();
+    loadPricing();
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Admin - Hillary The Stylist</title>
+  <link rel="shortcut icon" href="./favicon.svg" type="image/svg+xml">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root { --ink: #1f1f1f; --muted: #6b6b6b; --line: #e6e4e0; --bg: #f6f5f3; --card: #fff; --side: #1f1f1f; --accent: #b08d57; --danger: #b3382c; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: var(--bg); color: var(--ink); }
+    button { font-family: inherit; }
+
+    .layout { display: flex; min-height: 100vh; }
+    .sidebar { width: 250px; background: var(--side); color: #fff; padding: 24px 14px; display: flex; flex-direction: column; position: sticky; top: 0; height: 100vh; }
+    .brand { padding: 4px 12px 24px; font-size: 18px; font-weight: 700; }
+    .brand small { display: block; font-size: 12px; font-weight: 400; color: #9a9a9a; margin-top: 2px; }
+    .nav-item { display: flex; align-items: center; gap: 12px; padding: 12px; border-radius: 8px; color: #cfcfcf; cursor: pointer; font-size: 15px; background: none; border: 0; width: 100%; text-align: left; text-decoration: none; }
+    .nav-item:hover { background: #2d2d2d; color: #fff; }
+    .nav-item.active { background: #333; color: #fff; box-shadow: inset 3px 0 0 var(--accent); }
+    .nav-spacer { flex: 1; }
+
+    .main { flex: 1; min-width: 0; }
+    .topbar { background: var(--card); border-bottom: 1px solid var(--line); padding: 16px 32px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 5; }
+    .topbar h2 { font-size: 22px; }
+    .content { padding: 32px; max-width: 1000px; }
+    .section { display: none; }
+    .section.active { display: block; }
+    .section-head { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 20px; flex-wrap: wrap; }
+    .section-head p { color: var(--muted); font-size: 14px; }
+
+    .btn { padding: 10px 18px; border: 0; border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 14px; background: var(--ink); color: #fff; }
+    .btn:hover { opacity: .88; }
+    .btn:disabled { opacity: .5; cursor: wait; }
+    .btn-light { background: #ece9e4; color: var(--ink); }
+    .btn-danger { background: #f6e3e0; color: var(--danger); }
+    .btn-sm { padding: 6px 12px; font-size: 13px; }
+
+    .card { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 24px; margin-bottom: 20px; }
+    .card h3 { font-size: 16px; margin-bottom: 16px; }
+    .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; margin-bottom: 20px; }
+    .stat { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 20px; }
+    .stat b { display: block; font-size: 32px; }
+    .stat span { color: var(--muted); font-size: 14px; }
+    .notice { background: #f5eddc; border: 1px solid #e3d3ac; border-radius: 12px; padding: 20px; margin-bottom: 20px; }
+    .notice p { margin: 6px 0 14px; font-size: 14px; }
+
+    .field { margin-bottom: 16px; }
+    .field label { display: block; font-weight: 600; font-size: 14px; margin-bottom: 6px; }
+    .field small { color: var(--muted); font-size: 12px; }
+    input, textarea, select { width: 100%; padding: 10px 12px; border: 1px solid #d8d5cf; border-radius: 8px; font: inherit; font-size: 14px; background: #fff; }
+    input:focus, textarea:focus, select:focus { outline: 2px solid var(--accent); outline-offset: -1px; }
+    textarea { min-height: 90px; resize: vertical; }
+    .row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+    .list { display: flex; flex-direction: column; gap: 10px; }
+    .item { display: flex; align-items: center; gap: 14px; background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 12px; }
+    .item img { width: 64px; height: 64px; object-fit: cover; border-radius: 8px; background: #eee; flex-shrink: 0; }
+    .item-info { flex: 1; min-width: 0; }
+    .item-info b { display: block; }
+    .item-info span { color: var(--muted); font-size: 13px; }
+    .item-price { font-weight: 700; white-space: nowrap; }
+    .item-actions { display: flex; gap: 8px; }
+    .tag { display: inline-block; background: #ece9e4; border-radius: 99px; padding: 2px 10px; font-size: 12px; margin-top: 4px; }
+    .empty { text-align: center; color: var(--muted); padding: 40px 10px; background: var(--card); border: 1px dashed #d8d5cf; border-radius: 12px; }
+
+    .tabs { display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap; }
+    .tab { padding: 6px 14px; border-radius: 99px; border: 1px solid var(--line); background: var(--card); cursor: pointer; font-size: 13px; }
+    .tab.active { background: var(--ink); color: #fff; border-color: var(--ink); }
+    .photos { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 14px; }
+    .photo { position: relative; border-radius: 12px; overflow: hidden; background: #eee; aspect-ratio: 3 / 4; }
+    .photo img { width: 100%; height: 100%; object-fit: cover; }
+    .photo .tag { position: absolute; left: 8px; bottom: 8px; background: rgba(255,255,255,.92); }
+    .photo .btn { position: absolute; top: 8px; right: 8px; }
+
+    .preview { max-height: 120px; max-width: 100%; border-radius: 8px; margin-top: 8px; display: block; background: #eee; }
+    .hours-row { display: grid; grid-template-columns: 1.4fr 1fr 1fr auto; gap: 8px; margin-bottom: 8px; }
+
+    .modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.5); z-index: 50; align-items: center; justify-content: center; padding: 16px; }
+    .modal.open { display: flex; }
+    .modal-box { background: #fff; border-radius: 14px; padding: 28px; width: 100%; max-width: 480px; max-height: 92vh; overflow-y: auto; }
+    .modal-box h3 { margin-bottom: 18px; font-size: 18px; }
+    .modal-actions { display: flex; gap: 10px; justify-content: flex-end; margin-top: 8px; }
+
+    .toast { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(20px); background: var(--ink); color: #fff; padding: 12px 20px; border-radius: 10px; opacity: 0; pointer-events: none; transition: .25s; z-index: 100; font-size: 14px; }
+    .toast.show { opacity: 1; transform: translateX(-50%); }
+    .toast.error { background: var(--danger); }
+
+    @media (max-width: 800px) {
+      .layout { flex-direction: column; }
+      .sidebar { width: 100%; height: auto; position: static; flex-direction: row; padding: 8px; overflow-x: auto; gap: 4px; }
+      .brand, .nav-spacer { display: none; }
+      .nav-item { width: auto; white-space: nowrap; padding: 10px 14px; }
+      .nav-item.active { box-shadow: inset 0 -3px 0 var(--accent); }
+      .topbar { padding: 14px 18px; position: static; }
+      .content { padding: 18px; }
+      .row, .hours-row { grid-template-columns: 1fr; }
+      .item { flex-wrap: wrap; }
+      .item-actions { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <div class="layout" hidden>
+    <aside class="sidebar">
+      <div class="brand">Hillary The Stylist<small>Admin panel</small></div>
+      <button class="nav-item active" data-section="dashboard">Dashboard</button>
+      <button class="nav-item" data-section="cuts">Cuts &amp; Prices</button>
+      <button class="nav-item" data-section="gallery">Gallery</button>
+      <button class="nav-item" data-section="settings">Settings</button>
+      <div class="nav-spacer"></div>
+      <a class="nav-item" href="./index.html" target="_blank" rel="noopener">View website</a>
+    </aside>
+
+    <div class="main">
+      <header class="topbar">
+        <h2 id="page-title">Dashboard</h2>
+        <button class="btn btn-light" id="logout-btn">Log out</button>
+      </header>
+
+      <div class="content">
+        <section id="dashboard" class="section active">
+          <div id="setup-notice"></div>
+          <div class="stats">
+            <div class="stat"><b id="stat-cuts">–</b><span>Cuts &amp; prices</span></div>
+            <div class="stat"><b id="stat-photos">–</b><span>Gallery photos</span></div>
+          </div>
+          <div class="card">
+            <h3>What would you like to do?</h3>
+            <div class="item-actions" style="flex-wrap: wrap;">
+              <button class="btn" data-goto="cuts">Add a new cut</button>
+              <button class="btn" data-goto="gallery">Upload photos</button>
+              <button class="btn btn-light" data-goto="settings">Change contact, hours or logo</button>
+            </div>
+          </div>
+        </section>
+
+        <section id="cuts" class="section">
+          <div class="section-head">
+            <p>Everything shown in the Pricing section of the website.</p>
+            <button class="btn" id="add-cut-btn">+ Add cut or hairstyle</button>
+          </div>
+          <div class="list" id="cuts-list"></div>
+        </section>
+
+        <section id="gallery" class="section">
+          <div class="section-head">
+            <p>Photos shown on the Gallery page.</p>
+            <button class="btn" id="add-photo-btn">+ Upload photos</button>
+          </div>
+          <div class="tabs" id="gallery-tabs"></div>
+          <div class="photos" id="gallery-grid"></div>
+        </section>
+
+        <section id="settings" class="section">
+          <div class="card">
+            <h3>Business</h3>
+            <div class="row">
+              <div class="field"><label for="s-name">Name</label><input id="s-name"></div>
+              <div class="field"><label for="s-tagline">Tagline</label><input id="s-tagline"></div>
+            </div>
+            <div class="field"><label for="s-desc">Description</label><textarea id="s-desc"></textarea></div>
+            <div class="row">
+              <div class="field">
+                <label for="s-logo">Logo</label>
+                <input type="file" id="s-logo" accept="image/*">
+                <img class="preview" id="logo-preview" alt="" hidden>
+                <button class="btn btn-light btn-sm" id="logo-reset" type="button" style="margin-top: 8px;">Use text logo</button>
+              </div>
+              <div class="field">
+                <label for="s-banner">Banner picture</label>
+                <input type="file" id="s-banner" accept="image/*">
+                <img class="preview" id="banner-preview" alt="" hidden>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>Contact &amp; location</h3>
+            <div class="row">
+              <div class="field"><label for="s-phone">Phone</label><input id="s-phone" type="tel"></div>
+              <div class="field"><label for="s-email">Email</label><input id="s-email" type="email"></div>
+            </div>
+            <div class="field"><label for="s-location">Location</label><input id="s-location"></div>
+          </div>
+
+          <div class="card">
+            <h3>Opening hours</h3>
+            <div id="hours-list"></div>
+            <button class="btn btn-light btn-sm" id="add-hours-btn" type="button">+ Add a row</button>
+          </div>
+
+          <button class="btn" id="save-settings-btn">Save changes</button>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="modal"><div class="modal-box" id="modal-box"></div></div>
+  <div class="toast" id="toast"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="./assets/js/admin.js"></script>
+  <script src="./assets/js/admin-settings.js"></script>
+</body>
+</html>

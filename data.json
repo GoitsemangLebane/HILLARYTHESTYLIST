@@ -1,0 +1,147 @@
+{
+  "site": {
+    "name": "Hillary",
+    "tagline": "The Stylist",
+    "logo": "./assets/images/logo.svg",
+    "banner": "./assets/images/bannerhillary.png",
+    "description": "Expert cuts, colours and styling for all hair types. Book a session and leave looking exactly the way you wanted."
+  },
+  "contact": {
+    "phone": "+267 76 255051",
+    "email": "ketlhabanetswehillary13@gmail.com",
+    "location": "Gaborone, Extension 10, Campus. Style Studio Saloon"
+  },
+  "hours": [
+    { "day": "Mon – Thu", "open": "09:00", "close": "18:00" },
+    { "day": "Fri", "open": "09:00", "close": "19:00" },
+    { "day": "Sat", "open": "10:00", "close": "15:00" },
+    { "day": "Sun", "open": "10:00", "close": "19:00" }
+  ],
+  "services": [
+    {
+      "id": "cutting",
+      "title": "Hair cutting & styling",
+      "description": "Custom cuts that suit your features and personal style.",
+      "icon": "flaticon-salon"
+    },
+    {
+      "id": "washing",
+      "title": "Hair washing",
+      "description": "A relaxing wash with quality products to cleanse and nourish your hair and scalp.",
+      "icon": "flaticon-shampoo"
+    },
+    {
+      "id": "colour",
+      "title": "Multi-tone colour",
+      "description": "Dimensional tinting that adds depth and richness to your look.",
+      "icon": "flaticon-hair-dye"
+    }
+  ],
+  "pricing": [
+    {
+      "id": "haircut",
+      "name": "Hair cut",
+      "image": "./assets/images/P1.jpg",
+      "meta": "Clean & simple · 1 hr – 1 hr 30 min",
+      "price": "P100",
+      "category": "cut"
+    },
+    {
+      "id": "haircut-colour",
+      "name": "Hair cut & colour",
+      "image": "./assets/images/P41.jpg",
+      "meta": "2 hrs+",
+      "price": "P250+",
+      "category": "cut-color"
+    },
+    {
+      "id": "bobcut",
+      "name": "Bob cut",
+      "image": "./assets/images/P10.jpg",
+      "meta": "1 hr 30 min – 2 hrs",
+      "price": "P300",
+      "category": "cut"
+    },
+    {
+      "id": "bobcut-colour",
+      "name": "Bob cut & colour",
+      "image": "./assets/images/P20.jpg",
+      "meta": "2 hrs+",
+      "price": "P350+",
+      "category": "cut-color"
+    },
+    {
+      "id": "permrods",
+      "name": "Perm rods",
+      "image": "./assets/images/P54.jpg",
+      "meta": "2 hrs+",
+      "price": "P300",
+      "category": "cut"
+    },
+    {
+      "id": "permrods-colour",
+      "name": "Perm rods & colour",
+      "image": "./assets/images/P38.jpg",
+      "meta": "2 hrs+",
+      "price": "P350+",
+      "category": "cut-color"
+    }
+  ],
+  "gallery": [
+    { "id": "P1", "image": "./assets/images/P1.jpg", "category": "cuts" },
+    { "id": "P2", "image": "./assets/images/P2.jpg", "category": "colour" },
+    { "id": "P3", "image": "./assets/images/P3.jpg", "category": "designs" },
+    { "id": "P4", "image": "./assets/images/P4.jpg", "category": "cuts" },
+    { "id": "P5", "image": "./assets/images/P5.jpg", "category": "cuts" },
+    { "id": "P6", "image": "./assets/images/P6.jpg", "category": "cuts" },
+    { "id": "P7", "image": "./assets/images/P7.jpg", "category": "cuts" },
+    { "id": "P8", "image": "./assets/images/P8.jpg", "category": "designs" },
+    { "id": "P9", "image": "./assets/images/P9.jpg", "category": "cuts" },
+    { "id": "P10", "image": "./assets/images/P10.jpg", "category": "cuts" },
+    { "id": "P11", "image": "./assets/images/P11.jpg", "category": "cuts" },
+    { "id": "P12", "image": "./assets/images/P12.jpg", "category": "colour" },
+    { "id": "P13", "image": "./assets/images/P13.jpg", "category": "colour" },
+    { "id": "P14", "image": "./assets/images/P14.jpg", "category": "cuts" },
+    { "id": "P15", "image": "./assets/images/P15.jpg", "category": "colour" },
+    { "id": "P16", "image": "./assets/images/P16.jpg", "category": "cuts" },
+    { "id": "P17", "image": "./assets/images/P17.jpg", "category": "cuts" },
+    { "id": "P18", "image": "./assets/images/P18.jpg", "category": "colour" },
+    { "id": "P19", "image": "./assets/images/P19.jpg", "category": "cuts" },
+    { "id": "P20", "image": "./assets/images/P20.jpg", "category": "cuts" },
+    { "id": "P21", "image": "./assets/images/P21.jpg", "category": "cuts" },
+    { "id": "P22", "image": "./assets/images/P22.jpg", "category": "colour" },
+    { "id": "P23", "image": "./assets/images/P23.jpg", "category": "colour" },
+    { "id": "P24", "image": "./assets/images/P24.jpg", "category": "cuts" },
+    { "id": "P25", "image": "./assets/images/P25.jpg", "category": "cuts" },
+    { "id": "P26", "image": "./assets/images/P26.jpg", "category": "designs" },
+    { "id": "P27", "image": "./assets/images/P27.jpg", "category": "cuts" },
+    { "id": "P28", "image": "./assets/images/P28.jpg", "category": "cuts" },
+    { "id": "P29", "image": "./assets/images/P29.jpg", "category": "colour" },
+    { "id": "P30", "image": "./assets/images/P30.jpg", "category": "colour" },
+    { "id": "P31", "image": "./assets/images/P31.jpg", "category": "colour" },
+    { "id": "P32", "image": "./assets/images/P32.jpg", "category": "colour" },
+    { "id": "P33", "image": "./assets/images/P33.jpg", "category": "colour" },
+    { "id": "P34", "image": "./assets/images/P34.jpg", "category": "cuts" },
+    { "id": "P35", "image": "./assets/images/P35.jpg", "category": "cuts" },
+    { "id": "P36", "image": "./assets/images/P36.jpg", "category": "designs" },
+    { "id": "P37", "image": "./assets/images/P37.jpg", "category": "colour" },
+    { "id": "P38", "image": "./assets/images/P38.jpg", "category": "colour" },
+    { "id": "P39", "image": "./assets/images/P39.jpg", "category": "cuts" },
+    { "id": "P40", "image": "./assets/images/P40.jpg", "category": "colour" },
+    { "id": "P41", "image": "./assets/images/P41.jpg", "category": "colour" },
+    { "id": "P42", "image": "./assets/images/P42.jpg", "category": "colour" },
+    { "id": "P43", "image": "./assets/images/P43.jpg", "category": "designs" },
+    { "id": "P44", "image": "./assets/images/P44.jpg", "category": "designs" },
+    { "id": "P45", "image": "./assets/images/P45.jpg", "category": "colour" },
+    { "id": "P46", "image": "./assets/images/P46.jpg", "category": "cuts" },
+    { "id": "P47", "image": "./assets/images/P47.jpg", "category": "designs" },
+    { "id": "P48", "image": "./assets/images/P48.jpg", "category": "colour" },
+    { "id": "P49", "image": "./assets/images/P49.jpg", "category": "cuts" },
+    { "id": "P50", "image": "./assets/images/P50.jpg", "category": "colour" },
+    { "id": "P51", "image": "./assets/images/P51.jpg", "category": "colour" },
+    { "id": "P52", "image": "./assets/images/P52.jpg", "category": "cuts" },
+    { "id": "P53", "image": "./assets/images/P53.jpg", "category": "colour" },
+    { "id": "P54", "image": "./assets/images/P54.jpg", "category": "cuts" },
+    { "id": "P55", "image": "./assets/images/P55.jpg", "category": "designs" }
+  ]
+}

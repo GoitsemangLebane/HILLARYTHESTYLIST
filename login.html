@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Login - Hillary The Stylist</title>
+  <meta name="description" content="Admin login for managing salon content.">
+  
+  <link rel="shortcut icon" href="./favicon.svg" type="image/svg+xml">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, hsl(36, 10%, 97%) 0%, hsl(36, 15%, 95%) 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1rem;
+    }
+
+    .login-container {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+      max-width: 400px;
+      width: 100%;
+      padding: 3rem 2rem;
+      animation: slideUp 0.4s ease;
+    }
+
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .login-header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .login-header h1 {
+      font-size: 1.8rem;
+      color: hsl(30, 4%, 13%);
+      margin-bottom: 0.5rem;
+      font-weight: 700;
+    }
+
+    .login-header p {
+      color: hsl(30, 8%, 34%);
+      font-size: 0.95rem;
+    }
+
+    .login-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .form-group label {
+      font-weight: 600;
+      color: hsl(30, 4%, 13%);
+      font-size: 0.95rem;
+    }
+
+    .form-group input {
+      padding: 0.75rem;
+      border: 2px solid hsl(36, 10%, 92%);
+      border-radius: 6px;
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem;
+      color: hsl(30, 4%, 13%);
+      transition: border-color 0.2s ease;
+    }
+
+    .form-group input:focus {
+      outline: none;
+      border-color: hsl(30, 8%, 34%);
+      box-shadow: 0 0 0 3px rgba(97, 76, 65, 0.1);
+    }
+
+    .form-group input::placeholder {
+      color: hsl(30, 8%, 60%);
+    }
+
+    .login-btn {
+      padding: 0.85rem 1.5rem;
+      background: hsl(30, 8%, 24%);
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      min-height: 44px;
+    }
+
+    .login-btn:hover {
+      background: hsl(30, 8%, 14%);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(97, 76, 65, 0.2);
+    }
+
+    .login-btn:active {
+      transform: translateY(0);
+    }
+
+    .login-btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .login-btn.loading {
+      pointer-events: none;
+    }
+
+    .spinner {
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+      border-top-color: white;
+      animation: spin 0.8s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    .error-message {
+      padding: 1rem;
+      background: hsl(0, 100%, 95%);
+      color: hsl(0, 100%, 30%);
+      border-left: 4px solid hsl(0, 100%, 50%);
+      border-radius: 4px;
+      font-size: 0.95rem;
+      display: none;
+      animation: slideIn 0.3s ease;
+    }
+
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateX(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    .error-message.show {
+      display: block;
+    }
+
+    .success-message {
+      padding: 1rem;
+      background: hsl(100, 100%, 95%);
+      color: hsl(100, 100%, 30%);
+      border-left: 4px solid hsl(100, 100%, 50%);
+      border-radius: 4px;
+      font-size: 0.95rem;
+      display: none;
+      animation: slideIn 0.3s ease;
+    }
+
+    .success-message.show {
+      display: block;
+    }
+
+    .login-info {
+      background: hsl(36, 10%, 97%);
+      padding: 1.5rem;
+      border-radius: 8px;
+      margin-top: 1.5rem;
+      border-left: 4px solid hsl(200, 100%, 50%);
+    }
+
+    .login-info h3 {
+      color: hsl(30, 4%, 13%);
+      font-size: 0.9rem;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+    }
+
+    .login-info p {
+      color: hsl(30, 8%, 34%);
+      font-size: 0.85rem;
+      line-height: 1.6;
+    }
+
+    .login-info code {
+      background: white;
+      padding: 2px 6px;
+      border-radius: 3px;
+      font-family: 'Courier New', monospace;
+      font-size: 0.8rem;
+      color: hsl(0, 100%, 50%);
+    }
+
+    .back-link {
+      text-align: center;
+      margin-top: 1.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid hsl(36, 10%, 92%);
+    }
+
+    .back-link a {
+      color: hsl(30, 8%, 34%);
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 500;
+      transition: color 0.2s ease;
+    }
+
+    .back-link a:hover {
+      color: hsl(30, 4%, 13%);
+    }
+
+    @media (max-width: 480px) {
+      .login-container {
+        padding: 2rem 1.5rem;
+      }
+
+      .login-header h1 {
+        font-size: 1.5rem;
+      }
+
+      .login-info {
+        padding: 1rem;
+      }
+
+      .login-info h3 {
+        font-size: 0.85rem;
+      }
+
+      .login-info p {
+        font-size: 0.8rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="login-container">
+    <div class="login-header">
+      <h1>Admin Access</h1>
+      <p>Hillary The Stylist Salon</p>
+    </div>
+
+    <form class="login-form" id="loginForm" method="post" action="#" onsubmit="return false;" autocomplete="on">
+      <div id="errorMessage" class="error-message"></div>
+      <div id="successMessage" class="success-message"></div>
+
+      <div class="form-group">
+        <label for="password">Admin Password</label>
+        <input 
+          type="password" 
+          id="password" 
+          name="password" 
+          placeholder="Enter admin password" 
+          required
+          autocomplete="current-password"
+        >
+      </div>
+
+      <button type="submit" class="login-btn" id="loginBtn">
+        <span>Sign In</span>
+      </button>
+
+      <div class="login-info">
+        <h3>🔐 Secure Login</h3>
+        <p>Authorised staff only. Your password is checked securely by the server.</p>
+      </div>
+    </form>
+
+    <div class="back-link">
+      <a href="./index.html">← Back to website</a>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>
+    const ADMIN_EMAIL = 'ketlhabanetswehillary13@gmail.com';
+    const authClient = window.supabase.createClient(
+      'https://shysndkekkobmzqrzehl.supabase.co',
+      'sb_publishable_YoyRW91kIM3x2v03D7MTjQ_FfzicX3h'
+    );
+
+    const form = document.getElementById('loginForm');
+    const passwordInput = document.getElementById('password');
+    const loginBtn = document.getElementById('loginBtn');
+    const errorMsg = document.getElementById('errorMessage');
+    const successMsg = document.getElementById('successMessage');
+
+    function redirectToAdmin() {
+      window.location.replace('./admin.html');
+    }
+
+    function resetButton() {
+      loginBtn.disabled = false;
+      loginBtn.classList.remove('loading');
+      loginBtn.innerHTML = '<span>Sign In</span>';
+    }
+
+    function showError(message) {
+      errorMsg.textContent = message;
+      errorMsg.classList.add('show');
+      successMsg.classList.remove('show');
+    }
+
+    function showSuccess(message) {
+      successMsg.textContent = message;
+      successMsg.classList.add('show');
+      errorMsg.classList.remove('show');
+    }
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const password = passwordInput.value;
+      if (!password) {
+        showError('Please enter a password');
+        return;
+      }
+
+      loginBtn.disabled = true;
+      loginBtn.classList.add('loading');
+      loginBtn.innerHTML = '<div class="spinner"></div><span>Signing in...</span>';
+
+      try {
+        const { error } = await authClient.auth.signInWithPassword({ email: ADMIN_EMAIL, password });
+        if (error) {
+          const wrong = error.status === 400 || /invalid/i.test(error.message);
+          showError(wrong ? '❌ Incorrect password. Try again or contact Hillary.' : '❌ Could not reach the server. Check your internet and try again.');
+          resetButton();
+          passwordInput.value = '';
+          passwordInput.focus();
+          return;
+        }
+
+        showSuccess('✅ Access granted! Redirecting...');
+        setTimeout(redirectToAdmin, 600);
+      } catch (error) {
+        console.error('Login error:', error);
+        showError('❌ Error during login. Please try again.');
+        resetButton();
+      }
+    });
+
+    // Skip the form if already logged in
+    authClient.auth.getSession().then(({ data }) => {
+      if (data.session) redirectToAdmin();
+    });
+
+    passwordInput.focus();
+  </script>
+</body>
+
+</html>

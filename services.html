@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Services - Hillary The Stylist</title>
+  <meta name="description" content="Hair services including cuts, color, and styling">
+  
+  <link rel="shortcut icon" href="./favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./assets/css/style.css">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <script src="./assets/js/main.js" defer></script>
+  
+  <!-- Navigation will be injected here -->
+  <nav class="navbar" id="navbar"></nav>
+
+  <main>
+    <!-- Services Section -->
+    <section class="services" id="services">
+      <div class="container">
+        <div class="services-header">
+          <p class="label">Services</p>
+          <h2>What I offer</h2>
+          <p class="description">A full range of hair services for every client, from precision cuts to colour and treatments.</p>
+        </div>
+
+        <div class="services-grid" id="servicesGrid">
+          <!-- Services will be loaded here -->
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer will be injected here -->
+  <footer id="footer"></footer>
+
+  <script>
+    // Load services from data
+    async function loadServices() {
+      try {
+        const response = await fetch('./data.json');
+        const data = await response.json();
+        const grid = document.getElementById('servicesGrid');
+        
+        const services = data.services || [];
+        
+        grid.innerHTML = services.map(service => `
+          <div class="service-card">
+            <div class="service-icon">${service.icon || '✂️'}</div>
+            <h3>${service.title}</h3>
+            <p>${service.description}</p>
+          </div>
+        `).join('');
+      } catch (error) {
+        console.error('Error loading services:', error);
+      }
+    }
+
+    // Load navbar and footer
+    async function loadSharedComponents() {
+      try {
+        const response = await fetch('./index.html');
+        const html = await response.text();
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(html, 'text/html');
+        
+        // Extract and inject navbar
+        const navbarHtml = doc.querySelector('nav')?.outerHTML || '';
+        document.getElementById('navbar').outerHTML = navbarHtml;
+        
+        // Extract and inject footer
+        const footerHtml = doc.querySelector('footer')?.outerHTML || '';
+        document.getElementById('footer').outerHTML = footerHtml;
+      } catch (error) {
+        console.error('Error loading shared components:', error);
+      }
+    }
+
+    loadSharedComponents();
+    loadServices();
+  </script>
+</body>
+
+</html>

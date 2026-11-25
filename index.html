@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Hillary - The Stylist</title>
+  <meta name="description" content="Hillary The Stylist: cuts, colour and styling in Gaborone. View services, pricing and book an appointment.">
+
+  <link rel="shortcut icon" href="./favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./assets/css/style.css">
+  <link rel="stylesheet" href="./assets/css/flaticon.min.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="preload" as="image" href="./assets/images/bannerhillary.png">
+</head>
+
+<body>
+
+  <header class="site-header" data-header>
+    <div class="container header-inner">
+
+      <a href="#home" class="logo">Hillary<span>The Stylist</span></a>
+
+      <nav class="nav" data-nav>
+        <a href="#services" class="nav-link">Services</a>
+        <a href="#pricing" class="nav-link">Pricing</a>
+        <a href="#gallery" class="nav-link">Gallery</a>
+        <a href="#contact" class="nav-link">Contact</a>
+      </nav>
+
+      <a href="#appointment" class="btn btn-primary btn-small header-cta">Book now</a>
+
+      <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false" data-nav-toggle>
+        <ion-icon name="menu-outline" aria-hidden="true"></ion-icon>
+      </button>
+
+    </div>
+  </header>
+
+  <main>
+
+    <!-- HERO -->
+    <section class="hero" id="home">
+      <div class="container hero-inner">
+
+        <div class="hero-content">
+          <p class="eyebrow">Hair studio &middot; Gaborone</p>
+
+          <h1 class="hero-title">Cuts, colour and styling that feel like you.</h1>
+
+          <p class="hero-text">
+            Expert cuts, colours and styling for all hair types. Book a session and leave looking exactly the way you wanted.
+          </p>
+
+          <div class="hero-actions">
+            <a href="#appointment" class="btn btn-primary">
+              Book an appointment
+              <ion-icon name="arrow-forward" aria-hidden="true"></ion-icon>
+            </a>
+            <a href="#pricing" class="btn btn-ghost">See pricing</a>
+          </div>
+        </div>
+
+        <figure class="hero-media">
+          <img src="./assets/images/bannerhillary.png" alt="Hillary, stylist, at work in the studio" width="960" height="640">
+        </figure>
+
+      </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section class="section" id="services">
+      <div class="container">
+
+        <header class="section-header">
+          <p class="eyebrow">Services</p>
+          <h2 class="section-title">What I offer</h2>
+          <p class="section-text">
+            A full range of hair services for every client, from precision cuts to colour and treatments.
+          </p>
+        </header>
+
+        <ul class="service-grid">
+
+          <li class="service-card">
+            <span class="service-icon"><i class="flaticon-salon" aria-hidden="true"></i></span>
+            <h3 class="service-title">Hair cutting &amp; styling</h3>
+            <p class="service-text">Custom cuts that suit your features and personal style.</p>
+          </li>
+
+          <li class="service-card">
+            <span class="service-icon"><i class="flaticon-shampoo" aria-hidden="true"></i></span>
+            <h3 class="service-title">Hair washing</h3>
+            <p class="service-text">A relaxing wash with quality products to cleanse and nourish your hair and scalp.</p>
+          </li>
+
+          <li class="service-card">
+            <span class="service-icon"><i class="flaticon-hair-dye" aria-hidden="true"></i></span>
+            <h3 class="service-title">Multi-tone colour</h3>
+            <p class="service-text">Dimensional tinting that adds depth and richness to your look.</p>
+          </li>
+
+        </ul>
+
+      </div>
+    </section>
+
+    <!-- PRICING -->
+    <section class="section section-alt" id="pricing">
+      <div class="container">
+
+        <header class="section-header">
+          <p class="eyebrow">Pricing</p>
+          <h2 class="section-title">Simple, honest prices</h2>
+          <p class="section-text">Prices in pula. Colour services start from the price shown and depend on hair length and thickness.</p>
+        </header>
+
+        <div class="filters" role="group" aria-label="Filter pricing">
+          <button class="filter-btn active" data-filter-btn="all" aria-pressed="true">All</button>
+          <button class="filter-btn" data-filter-btn="cut" aria-pressed="false">Cuts</button>
+          <button class="filter-btn" data-filter-btn="cut-color" aria-pressed="false">Cut &amp; colour</button>
+        </div>
+
+        <ul class="price-grid">
+
+          <li class="price-card" data-filter="cut">
+            <img src="./assets/images/P1.jpg" alt="Hair cut" loading="lazy" width="810" height="1080">
+            <div class="price-body">
+              <h3 class="price-name">Hair cut</h3>
+              <p class="price-meta">Clean &amp; simple &middot; 1 hr – 1 hr 30 min</p>
+              <p class="price-amount">P100</p>
+            </div>
+          </li>
+
+          <li class="price-card" data-filter="cut-color">
+            <img src="./assets/images/P41.jpg" alt="Hair cut and colour" loading="lazy" width="768" height="1024">
+            <div class="price-body">
+              <h3 class="price-name">Hair cut &amp; colour</h3>
+              <p class="price-meta">2 hrs+</p>
+              <p class="price-amount">P250<span>+</span></p>
+            </div>
+          </li>
+
+          <li class="price-card" data-filter="cut">
+            <img src="./assets/images/P10.jpg" alt="Bob cut" loading="lazy" width="810" height="1080">
+            <div class="price-body">
+              <h3 class="price-name">Bob cut</h3>
+              <p class="price-meta">1 hr 30 min – 2 hrs</p>
+              <p class="price-amount">P300</p>
+            </div>
+          </li>
+
+          <li class="price-card" data-filter="cut-color">
+            <img src="./assets/images/P20.jpg" alt="Bob cut and colour" loading="lazy" width="810" height="1080">
+            <div class="price-body">
+              <h3 class="price-name">Bob cut &amp; colour</h3>
+              <p class="price-meta">2 hrs+</p>
+              <p class="price-amount">P350<span>+</span></p>
+            </div>
+          </li>
+
+          <li class="price-card" data-filter="cut">
+            <img src="./assets/images/P54.jpg" alt="Perm rods" loading="lazy" width="808" height="1080">
+            <div class="price-body">
+              <h3 class="price-name">Perm rods</h3>
+              <p class="price-meta">2 hrs+</p>
+              <p class="price-amount">P300</p>
+            </div>
+          </li>
+
+          <li class="price-card" data-filter="cut-color">
+            <img src="./assets/images/P38.jpg" alt="Perm rods and colour" loading="lazy" width="864" height="1080">
+            <div class="price-body">
+              <h3 class="price-name">Perm rods &amp; colour</h3>
+              <p class="price-meta">2 hrs+</p>
+              <p class="price-amount">P350<span>+</span></p>
+            </div>
+          </li>
+
+        </ul>
+
+      </div>
+    </section>
+
+    <!-- GALLERY PREVIEW -->
+    <section class="section" id="gallery">
+      <div class="container">
+
+        <header class="section-header section-header-row">
+          <div>
+            <p class="eyebrow">Gallery</p>
+            <h2 class="section-title">Recent work</h2>
+          </div>
+          <a href="./gallery.html" class="btn btn-ghost">
+            View full gallery
+            <ion-icon name="arrow-forward" aria-hidden="true"></ion-icon>
+          </a>
+        </header>
+
+        <ul class="gallery-grid">
+          <li><img src="./assets/images/Gallery1.jpg" alt="Recent hairstyle by Hillary" loading="lazy" width="422" height="550"></li>
+          <li><img src="./assets/images/Gallery2.jpg" alt="Recent hairstyle by Hillary" loading="lazy" width="422" height="550"></li>
+          <li><img src="./assets/images/Gallery3.jpg" alt="Recent hairstyle by Hillary" loading="lazy" width="422" height="550"></li>
+          <li><img src="./assets/images/Gallery4.jpg" alt="Recent hairstyle by Hillary" loading="lazy" width="422" height="550"></li>
+        </ul>
+
+      </div>
+    </section>
+
+    <!-- APPOINTMENT -->
+    <section class="section section-alt" id="appointment">
+      <div class="container appointment-inner">
+
+        <div class="appointment-intro">
+          <p class="eyebrow">Appointment</p>
+          <h2 class="section-title">Book your visit</h2>
+          <p class="section-text">
+            Send your details and preferred date. I'll confirm your booking as soon as possible.
+          </p>
+
+          <ul class="contact-list">
+            <li>
+              <ion-icon name="location-outline" aria-hidden="true"></ion-icon>
+              <span>Gaborone, Extension 10, Campus. Style Studio Saloon</span>
+            </li>
+            <li>
+              <ion-icon name="call-outline" aria-hidden="true"></ion-icon>
+              <a href="tel:+26776255051">+267 76 255051</a>
+            </li>
+          </ul>
+        </div>
+
+        <form action="https://formbold.com/s/92Z5z" method="POST" class="appointment-form">
+
+          <div class="form-row">
+            <label class="field">
+              <span>Full name</span>
+              <input type="text" name="name" placeholder="Your full name" required>
+            </label>
+            <label class="field">
+              <span>Email</span>
+              <input type="email" name="email_address" placeholder="you@example.com" required>
+            </label>
+          </div>
+
+          <div class="form-row">
+            <label class="field">
+              <span>Phone</span>
+              <input type="tel" name="phone" placeholder="Phone number" required>
+            </label>
+            <label class="field">
+              <span>Service</span>
+              <select name="category" required>
+                <option value="" disabled selected>Select a service</option>
+                <option value="Hair Cut">Hair Cut</option>
+                <option value="Hair Cut &amp; Color">Hair Cut &amp; Colour</option>
+                <option value="Bob Cut">Bob Cut</option>
+                <option value="Bob Cut &amp; Color">Bob Cut &amp; Colour</option>
+                <option value="Perm Rods">Perm Rods</option>
+                <option value="Perm Rods &amp; Color">Perm Rods &amp; Colour</option>
+              </select>
+            </label>
+          </div>
+
+          <label class="field">
+            <span>Preferred date</span>
+            <input type="date" name="date" required>
+          </label>
+
+          <label class="field">
+            <span>Message <small>(optional)</small></span>
+            <textarea name="message" rows="4" placeholder="Anything I should know?"></textarea>
+          </label>
+
+          <button type="submit" class="btn btn-primary btn-block">
+            Request appointment
+            <ion-icon name="arrow-forward" aria-hidden="true"></ion-icon>
+          </button>
+
+        </form>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer" id="contact">
+    <div class="container footer-inner">
+
+      <div class="footer-brand">
+        <a href="#home" class="logo">Hillary<span>The Stylist</span></a>
+        <div class="socials">
+          <a href="https://www.facebook.com/profile.php?id=100083476711721" class="social-link" aria-label="Facebook" title="Facebook">
+            <ion-icon name="logo-facebook" aria-hidden="true"></ion-icon>
+          </a>
+          <a href="https://instagram.com/hillary_the_stylist?igshid=YmMyMTA2M2Y=" class="social-link" aria-label="Instagram" title="Instagram">
+            <ion-icon name="logo-instagram" aria-hidden="true"></ion-icon>
+          </a>
+          <a href="https://wa.me/+26776255051" class="social-link" aria-label="WhatsApp" title="WhatsApp">
+            <ion-icon name="logo-whatsapp" aria-hidden="true"></ion-icon>
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h3 class="footer-title">Hours</h3>
+        <ul class="footer-list">
+          <li><ion-icon name="time-outline" aria-hidden="true"></ion-icon> Mon – Thu, 09:00 – 18:00</li>
+          <li><ion-icon name="time-outline" aria-hidden="true"></ion-icon> Fri, 09:00 – 19:00</li>
+          <li><ion-icon name="time-outline" aria-hidden="true"></ion-icon> Sat, 10:00 – 15:00</li>
+          <li><ion-icon name="time-outline" aria-hidden="true"></ion-icon> Sun, 10:00 – 19:00</li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h3 class="footer-title">Contact</h3>
+        <ul class="footer-list">
+          <li><ion-icon name="call-outline" aria-hidden="true"></ion-icon> <a href="tel:+26776255051">+267 76 255051</a></li>
+          <li><ion-icon name="mail-outline" aria-hidden="true"></ion-icon> <a href="mailto:ketlhabanetswehillary13@gmail.com">ketlhabanetswehillary13@gmail.com</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="container footer-bottom">
+      <p>&copy; <span id="year-link" style="cursor: pointer; color: #d4a574; text-decoration: underline; font-weight: 600;">2026</span> <a href="https://www.linkedin.com/in/goitsemang-lebane-2aab28194">Goitsemang Austin Lebane</a>. All rights reserved.</p>
+    </div>
+    <script>
+      document.getElementById('year-link').addEventListener('click', function() {
+        window.location.href = './login.html';
+      });
+    </script>
+  </footer>
+
+  <script src="./assets/js/script.js" defer></script>
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+</body>
+
+</html>
